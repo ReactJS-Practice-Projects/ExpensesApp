@@ -8,61 +8,24 @@ const ExpenseForm = () => {
   const [enteredAmount, setEnteredAmount] = useState('');  
   const [enteredDate, setEnteredDate] = useState(''); 
 
-    /*const [userInput, setUserInput] = useState({
-        enteredTitle: '',
-        enteredAmount: '',
-        enteredDate: ''
-    });*/
-
   const titleChangeHandler = (event) => 
   {
     setEnteredTitle(event.target.value);
-    
-    //here we use spread operator to pass values to all properties of the object
-    //then we override title with the value form the input field. 
-    /*setUserInput({
-        ...userInput,
-        enteredTitle: event.target.value 
-    })*/
-    
-    //Howevere, the function above depends on the previous state and that's why can break in certain conditions
-    //As a result of it, the new functions was offered to set the state
-    //The new function gets values from teh previous statess and assigns them with the help of spread opertator  
-    //this function will gureantee that it will always be the latest snapshot value of the state. 
-    //if you depend on the previous state then use this code. 
-    /*setUserInput((prevState) => {
-        return {...prevState, enteredTitle: event.target.value };
-    });*/
-
-
-};
+  };
 
   const amountChangeHandler = (event) => 
   {
     setEnteredAmount(event.target.value);
-    
-    /*setUserInput({
-        ...userInput,
-        enteredAmount: event.target.value 
-    })*/
-
   };
 
   const dateChangeHandler = (event) => 
   {
     setEnteredDate(event.target.value);
-    
-    /*setUserInput({
-        ...userInput,
-        enteredDate: event.target.value 
-    })*/
-
   };
 
   const submitHandler = (event) => {
       event.preventDefault();
       
-      //here we create object and reference to the entered Ttitle from the state object
       const expenseData = {
         title: enteredTitle,
         amount: enteredAmount,
@@ -70,6 +33,10 @@ const ExpenseForm = () => {
       };
 
       console.log(expenseData);
+      //set all states to empoty values
+      setEnteredTitle('');
+      setEnteredAmount('');
+      setEnteredDate('');
   };
 
   return (
@@ -77,15 +44,21 @@ const ExpenseForm = () => {
         <div className='new-expense__controls'>
             <div className='new-expense__control'>
                 <label>Title</label>
-                <input type='text' onChange={titleChangeHandler} />
+                <input type='text' 
+                    value={enteredTitle} 
+                    onChange={titleChangeHandler} />
             </div>
             <div className='new-expense__control'>
                 <label>Amount</label>
-                <input type='number' min="0.01" step="0.01" onChange={amountChangeHandler} />
+                <input type='number' min="0.01" step="0.01" 
+                    value={enteredAmount} 
+                    onChange={amountChangeHandler} />
             </div>
             <div className='new-expense__control'>
                 <label>Date</label>
-                <input type='date' min="2019-01-01" onChange={dateChangeHandler}/>
+                <input type='date' min="2019-01-01" 
+                    value={enteredDate} 
+                    onChange={dateChangeHandler}/>
             </div>
         </div>
         
