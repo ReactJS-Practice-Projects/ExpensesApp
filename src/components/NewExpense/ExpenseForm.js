@@ -4,26 +4,57 @@ import './ExpenseForm.css';
 
 const ExpenseForm = () => {
     
-  const [eneteredTitle, setEneteredTitle] = useState('');   
+  /*const [eneteredTitle, setEneteredTitle] = useState('');   
   const [eneteredAmount, setEneteredAmount] = useState('');  
-  const [eneteredDate, setEneteredDate] = useState(''); 
+  const [eneteredDate, setEneteredDate] = useState(''); */
+
+    const [userInput, setUserInput] = useState({
+        enteredTitle: '',
+        enteredAmount: '',
+        enteredDate: ''
+    });
 
   //when we type something in the input field we get value as an object from the input field
   //in order to get the values from this object we access it with this code: event.target.value 
   const titleChangeHandler = (event) => 
   {
-    //console.log(event.target.value);
-    setEneteredTitle(event.target.value);
-  };
+    //setEneteredTitle(event.target.value);
+    
+    //here we use spread operator to pass values to all properties of the object
+    //then we override title with the value form the input field. 
+    /*setUserInput({
+        ...userInput,
+        enteredTitle: event.target.value 
+    })*/
+    
+    //Howevere, the function above depends on the previous state and that's why can break in certain conditions
+    //As a result of it, the new functions was offered to set the state
+    //The new function gets values from teh previous statess and assigns them with the help of spread opertator  
+    //this function will gureantee that it will always be the latest snapshot value of the state. 
+    //if you depend on the previous state then use this code. 
+    setUserInput((prevState) => {
+        return {...prevState, enteredTitle: event.target.value };
+    });
+
+
+};
 
   const amountChangeHandler = (event) => 
   {
-    setEneteredAmount(event.target.value);
+    //setEneteredAmount(event.target.value);
+    setUserInput({
+        ...userInput,
+        enteredAmount: event.target.value 
+    })
   };
 
   const dateChangeHandler = (event) => 
   {
-    setEneteredDate(event.target.value);
+    //setEneteredDate(event.target.value);
+    setUserInput({
+        ...userInput,
+        enteredDate: event.target.value 
+    })
   };
 
 
