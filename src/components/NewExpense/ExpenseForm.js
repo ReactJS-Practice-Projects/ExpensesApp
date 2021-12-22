@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import './ExpenseForm.css';
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
     
   const [enteredTitle, setEnteredTitle] = useState('');   
   const [enteredAmount, setEnteredAmount] = useState('');  
@@ -32,7 +32,9 @@ const ExpenseForm = () => {
         date: new Date(enteredDate)
       };
 
-      console.log(expenseData);
+      //we pass expenseData as argument to the onSaveExpenseData function
+      props.onSaveExpenseData(expenseData);
+
       //set all states to empoty values
       setEnteredTitle('');
       setEnteredAmount('');
