@@ -12,6 +12,8 @@ const Expenses = (props) => {
     setFilteredYear(selectedYear);
   }  
 
+  //if we didn't have id then we could use index in teh function like this: 
+  //props.items.map(expense, index), index might be the same and can cause bugs 
   return (
     <div>
       
@@ -19,6 +21,7 @@ const Expenses = (props) => {
         <ExpensesFilter selected={filteredYear} onChangeFilter={filterChangeHandler} />
         {props.items.map(expense => (
           <ExpenseItem  
+            key={expense.id}
             title={expense.title} 
             amount={expense.amount} 
             date={expense.date} />
