@@ -17,19 +17,23 @@ const Expenses = (props) => {
     return expense.date.getFullYear().toString() === filteredYear;
   });
 
-  //now we use filteredExpenses variable ot output the list based on the matched year
+  //now we use filteredExpenses variable to output the list based on the matched year
+  //we add ternary expression to output values conditionally
   return (
     <div>
-      
       <Card className="expenses">
         <ExpensesFilter selected={filteredYear} onChangeFilter={filterChangeHandler} />
-        {filteredExpenses.map((expense) => (
-          <ExpenseItem  
-            key={expense.id}
-            title={expense.title} 
-            amount={expense.amount} 
-            date={expense.date} />
-        ))}
+        {filteredExpenses.length === 0 ? (<p>No expenses found.</p>) : 
+        (
+          filteredExpenses.map((expense) => (
+            <ExpenseItem  
+              key={expense.id}
+              title={expense.title} 
+              amount={expense.amount} 
+              date={expense.date} />
+          ))  
+        )} 
+        
       </Card>
     </div>
   );
