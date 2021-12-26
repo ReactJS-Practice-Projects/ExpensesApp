@@ -21,12 +21,12 @@ const Expenses = (props) => {
 
   //take all filter conditiouns out of one place and assign the results to the variable expensesContent
   return (
-    <div>
+    <li>
       <Card className="expenses">
         <ExpensesFilter selected={filteredYear} onChangeFilter={filterChangeHandler} />
         <ExpensesList items={filteredExpenses} />
       </Card>
-    </div>
+    </li>
   );
 }
 
