@@ -12,14 +12,18 @@ const Expenses = (props) => {
     setFilteredYear(selectedYear);
   }  
 
-  //if we didn't have id then we could use index in teh function like this: 
-  //props.items.map(expense, index), index might be the same and can cause bugs 
+  //getFullYear is reserved word
+  const filteredExpenses = props.items.filter(expense => {
+    return expense.date.getFullYear().toString() === filteredYear;
+  });
+
+  //now we use filteredExpenses variable ot output the list based on the matched year
   return (
     <div>
       
       <Card className="expenses">
         <ExpensesFilter selected={filteredYear} onChangeFilter={filterChangeHandler} />
-        {props.items.map(expense => (
+        {filteredExpenses.map((expense) => (
           <ExpenseItem  
             key={expense.id}
             title={expense.title} 
