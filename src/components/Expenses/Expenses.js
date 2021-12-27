@@ -3,6 +3,9 @@ import './Expenses.css';
 import ExpensesList from "./ExpensesList";
 import ExpensesFilter from "./ExpensesFilter";
 import Card from "../UI/Card";
+import ExpensesChart from './ExpensesChart';
+
+
 
 const Expenses = (props) => {
 
@@ -17,13 +20,13 @@ const Expenses = (props) => {
     return expense.date.getFullYear().toString() === filteredYear;
   });
 
- 
 
   //take all filter conditiouns out of one place and assign the results to the variable expensesContent
   return (
     <li>
       <Card className="expenses">
         <ExpensesFilter selected={filteredYear} onChangeFilter={filterChangeHandler} />
+        <ExpensesChart expenses={filteredExpenses} />
         <ExpensesList items={filteredExpenses} />
       </Card>
     </li>
