@@ -1,5 +1,4 @@
-import React, {useSate} from 'react';
-import { useState } from 'react/cjs/react.development';
+import { useState } from 'react';
 
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
@@ -8,7 +7,7 @@ import NewExpense from "./components/NewExpense/NewExpense";
 const DUMMY_EXPENSES = [
   {
     id: 'e1',
-    title: 'Toilet Paper',
+    title: 'Paper Towel',
     amount: 94.12,
     date: new Date(2020, 7, 14),
   },
@@ -33,7 +32,7 @@ const App = () => {
   const[expenses, setExpenses] = useState(DUMMY_EXPENSES);
 
   const addExpenseHandler = (expense) => {
-    //1st approach -  how state can be udoated from teh values from teh array by using the sread operator 
+    //1st approach -  how state can be udoated from the values from the array by using the sread operator 
     //setExpenses([expense, ...expenses]);
     //2nd approach - how the to update state using the previous state
     //prevExpenses is reserved word in react
